@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->prefix('/admin')->group(function () {
     Route::resource('/stok', StokController::class);
+    Route::resource('/transaksi', TransaksiController::class);
 });
 
 require __DIR__.'/auth.php';

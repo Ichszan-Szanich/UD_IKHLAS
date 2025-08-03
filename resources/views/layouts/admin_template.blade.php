@@ -131,9 +131,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('transaksi.index') }}" class="nav-link">
                   <i class="fas fa-shopping-basket"></i>
-                  <p>Pemesanan</p>
+                  <p>Transaksi</p>
                 </a>
               </li>
               <hr class="my-2 text-white opacity-25 w-100 ">

@@ -17,7 +17,6 @@ class transaksi extends Model
         'tanggal_transaksi',
         'jumlah_barang',
         'total_harga',
-        'bukti_bayar'
     ];
 
     public function stok(){

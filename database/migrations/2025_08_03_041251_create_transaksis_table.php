@@ -17,7 +17,6 @@ return new class extends Migration
             $table->dateTime('tanggal_transaksi');
             $table->integer('jumlah_barang');
             $table->decimal('total_harga', 10, 2);
-            $table->string('bukti_bayar');
             $table->timestamps();
         });
     }
