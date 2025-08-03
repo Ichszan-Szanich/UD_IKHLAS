@@ -12,7 +12,8 @@ class StokController extends Controller
      */
     public function index()
     {
-        //
+        $stoks = stok::all();
+        return view('admin.stok.index', compact('stoks'));
     }
 
     /**
@@ -20,7 +21,7 @@ class StokController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.stok.create');
     }
 
     /**
@@ -28,7 +29,19 @@ class StokController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_barang' => 'required|string|max:225',
+            'jumlah' => 'required|integer|min:0',
+            'harga' => 'required|numeric|min:0',
+        ]);
+
+        stok::create([
+            'nama_barang' => $request->nama_barang,
+            'jumlah' => $request->jumlah,
+            'harga' => $request->harga,
+        ]);
+
+        return redirect()->route('stok.index')->with('success', 'Stok berhasil ditambahkan');
     }
 
     /**
@@ -44,7 +57,7 @@ class StokController extends Controller
      */
     public function edit(stok $stok)
     {
-        //
+        return view('admin.stok.edit', compact('stok'));
     }
 
     /**
@@ -52,7 +65,21 @@ class StokController extends Controller
      */
     public function update(Request $request, stok $stok)
     {
-        //
+        $request->validate([
+            'nama_barang' => 'required|string|max:225',
+            'jumlah' => 'required|integer|min:0',
+            'harga' => 'required|numeric|min:0',
+        ]);
+
+        $stok = stok::findOrFail($stok->id);
+
+        $stok->update([
+            'nama_barang' => $request->nama_barang,
+            'jumlah' => $request->jumlah,
+            'harga' => $request->harga,
+        ]);
+
+        return redirect()->route('stok.index')->with('success', 'Stok berhasil diupdate');
     }
 
     /**
@@ -60,6 +87,7 @@ class StokController extends Controller
      */
     public function destroy(stok $stok)
     {
-        //
+        $stok->delete();
+        return redirect()->route('stok.index')->with('warning', 'Stok berhasil dihapus');
     }
 }
